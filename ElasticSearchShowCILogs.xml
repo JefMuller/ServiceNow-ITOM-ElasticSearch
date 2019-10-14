@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><unload unload_date="2019-10-14 13:24:35">
+<sys_remote_update_set action="INSERT_OR_UPDATE">
+<application display_value="Global">global</application>
+<application_name>Global</application_name>
+<application_scope>global</application_scope>
+<application_version/>
+<collisions/>
+<commit_date/>
+<deleted/>
+<description/>
+<inserted/>
+<name>ElasticSearch - Show CI Logs</name>
+<origin_sys_id/>
+<parent display_value=""/>
+<release_date/>
+<remote_base_update_set display_value=""/>
+<remote_parent_id/>
+<remote_sys_id>3c246be4db684c90f7f2ae5a48961936</remote_sys_id>
+<state>loaded</state>
+<summary/>
+<sys_class_name>sys_remote_update_set</sys_class_name>
+<sys_created_by>naomi.noc</sys_created_by>
+<sys_created_on>2019-10-14 13:24:35</sys_created_on>
+<sys_id>2f546fe4db684c90f7f2ae5a489619a1</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_updated_by>naomi.noc</sys_updated_by>
+<sys_updated_on>2019-10-14 13:24:35</sys_updated_on>
+<update_set display_value=""/>
+<update_source display_value=""/>
+<updated/>
+</sys_remote_update_set>
+<sys_update_xml action="INSERT_OR_UPDATE">
+<action>INSERT_OR_UPDATE</action>
+<application display_value="Global">global</application>
+<category>customer</category>
+<comments/>
+<name>sa_context_menu_6aef3b5edb980090f7f2ae5a489619d4</name>
+<payload>&lt;?xml version="1.0" encoding="UTF-8"?&gt;&lt;record_update table="sa_context_menu"&gt;&lt;sa_context_menu action="INSERT_OR_UPDATE"&gt;&lt;active&gt;true&lt;/active&gt;&lt;condition&gt;!item.isError() &amp;amp;&amp;amp; !item.isEntryPoint() &amp;amp;&amp;amp; !item.isBoundary() &amp;amp;&amp;amp; !item.connectedToBs()&lt;/condition&gt;&lt;item&gt;node&lt;/item&gt;&lt;name&gt;Show CI logs Elasticsearch (last hour)&lt;/name&gt;&lt;order/&gt;&lt;script&gt;&lt;![CDATA[/**
+ * Script executed on the client for this Show CI logs Elasticsearch (last hour) action
+ *
+ * @author JF Muller
+ * @since  November 2019
+ * 
+**/
+function showCILogs() {
+	if(angular.isDefined(item.cid)) {
+
+		var elasticSearchHost = 'demo.elastic.co'; // Adjust this to your elasticSearch host
+		var elasticSearchPort = '80'; // Adjust this to your elasticSearch port
+
+		if (elasticSearchHost &amp;&amp; elasticSearchPort) {
+			var now = new Date(); 
+			var epochTime = Math.round(now.getTime());
+			var elasticSearchUrl = "http://" + elasticSearchHost + ":" + elasticSearchPort + "/app/infra#/logs/stream?_g=()&amp;flyoutOptions=(flyoutId:!n,flyoutVisibility:hidden,surroundingLogsId:!n)&amp;logFilter=(expression:'host%20:%20" + encodeURIComponent(item.name) + "',kind:kuery)&amp;logPosition=(position:(tiebreaker:1875,time:" + epochTime +"),streamLive:!f)";
+			var url = elasticSearchUrl;
+
+			var newWin = window.open (url, '_blank' );
+
+			if(!newWin || newWin.closed || angular.isUndefined(newWin.closed)) 
+				sncEventScope.broadcast(sncGlobals.EVT_REPORT_INFO, i18n.getMessage("Turn off your pop-up blocker!"));
+		}
+	}
+}
+
+showCILogs();
+]]&gt;&lt;/script&gt;&lt;sys_created_by&gt;naomi.noc&lt;/sys_created_by&gt;&lt;sys_created_on&gt;2019-10-07 15:46:23&lt;/sys_created_on&gt;&lt;sys_id&gt;6aef3b5edb980090f7f2ae5a489619d4&lt;/sys_id&gt;&lt;sys_mod_count&gt;38&lt;/sys_mod_count&gt;&lt;sys_updated_by&gt;naomi.noc&lt;/sys_updated_by&gt;&lt;sys_updated_on&gt;2019-10-14 13:24:03&lt;/sys_updated_on&gt;&lt;target&gt;snac&lt;/target&gt;&lt;type&gt;menu&lt;/type&gt;&lt;/sa_context_menu&gt;&lt;sys_translated_text action="delete_multiple" query="documentkey=6aef3b5edb980090f7f2ae5a489619d4"/&gt;&lt;/record_update&gt;</payload>
+<payload_hash>1554400527</payload_hash>
+<remote_update_set display_value="ElasticSearch - Show CI Logs">2f546fe4db684c90f7f2ae5a489619a1</remote_update_set>
+<replace_on_upgrade>false</replace_on_upgrade>
+<sys_created_by>naomi.noc</sys_created_by>
+<sys_created_on>2019-10-14 13:24:35</sys_created_on>
+<sys_id>a3546fe4db684c90f7f2ae5a489619a2</sys_id>
+<sys_mod_count>0</sys_mod_count>
+<sys_recorded_at>16dca70a7260000001</sys_recorded_at>
+<sys_updated_by>naomi.noc</sys_updated_by>
+<sys_updated_on>2019-10-14 13:24:35</sys_updated_on>
+<table/>
+<target_name>Show CI logs Elasticsearch (last hour)</target_name>
+<type>Menu Action</type>
+<update_domain>global</update_domain>
+<update_guid>7f34abe423684c9031a9c0eb20904ffe</update_guid>
+<update_guid_history>7f34abe423684c9031a9c0eb20904ffe:1554400527,0f0427e4da684c902d58bee4cf3cb748:-1105001831,cc3faaa429244c90f094d00a70b41c1f:1113398094,a52f3f97dc188490192afdc4e8e9bb79:-890970672,f7de73972b188490c41f660fa4075865:1491013520,93fc77d33518849068bfdcaf6286db4b:54153820,5ccc7f9374188490891210e4216908c3:-408168100,96acfb930f1884904ca19c4679a31aec:-2095262404,7bdb739fd9d48490ae11cf9ede1213f3:1773421637,35753107e11404904b7f269f7c1bfd06:937399532,2efa99ba219880901f714a20da0a798a:1773421637,d50a117a45988090b3df0d5d551b1ab3:9941931,b91959f675988090cf4a34712eb0df58:-1747393173,6712d57e5d5880902d8dbc3f43b02893:950646987,07311dfa99588090fa0e3d858817cb59:-165807693,c3f0d5fa5d5880906ec02102da110025:-479785707,e66f057ab0588090e7349693ce3197a6:200952451,b4ee8df66a5880905a257c37db824a7f:2019671904,61166c3e065480906a779e7b1b6c97e3:1912001189,42c5683e005480900d3317e795b33705:-811335515,2865607af75480906a3f9db61afa9a75:-1506892753,0f64e0f6c35480905e1e4a679cb44947:-1973420245,1f9220766d548090d83117fb645a91cc:-1840614638,aa8f10fe7e1480901cd9058b2fff019e:-1203072970,755d983a18148090d97edf0cb119c0a8:-714884590,9d045cba31d08090fa6f10aeec58da57:-734208012,594a4c6e7cd800901b91618b7e9951ad:1650070012,86298ceac4d800908a80b2a72638c711:-1281731510,bb9880ea8bd80090a953558384b8c5df:-620651470,3e58c8aa61d8009062ea2a5cd0a0a86c:1718327161,173884aaadd80090147a8ce71ccca798:907839819,0f9688e696d8009064b019288f09587e:-1588512354,d15448267cd800908d19c201e82e16f3:1147364640,6363c0e28bd8009060b419022b9f1129:-579769419,f7e204a2dcd800909ae1e52623c3856a:-1256181676,5782886208d800909c1bd1b48bc19d67:4951047,be62446211d80090c392665d16bb4798:11092647,b9c1c42288d80090b11906c4437d8b47:958810257,20b188eed4980090af7e9acd60e41fb7:-1379250051</update_guid_history>
+<update_set display_value=""/>
+<view/>
+</sys_update_xml>
+</unload>
